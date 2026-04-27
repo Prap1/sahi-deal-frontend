@@ -44,7 +44,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between mb-10">
         <div>
           <h1 className="text-3xl font-extrabold text-white">Dashboard</h1>
-          <p className="text-gray-400 mt-1">Welcome back, Admin. Here's your platform overview.</p>
+          <p className="text-gray-400 mt-1">Welcome back, Admin. Here&apos;s your platform overview.</p>
         </div>
         <Link
           href="/admin/keywords"

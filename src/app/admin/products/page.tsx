@@ -49,6 +49,7 @@ export default function ProductsPage() {
     setLoading(false);
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchProducts(); }, []);
 
   const handleSave = async (e: React.FormEvent) => {

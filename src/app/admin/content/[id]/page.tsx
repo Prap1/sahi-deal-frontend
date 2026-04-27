@@ -32,7 +32,6 @@ interface PageData {
 
 export default function ContentEditorPage() {
   const { id: slug } = useParams<{ id: string }>();
-  const router = useRouter();
 
   const [page, setPage] = useState<PageData | null>(null);
   const [content, setContent] = useState<AiContent>({});

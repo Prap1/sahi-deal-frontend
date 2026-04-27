@@ -22,7 +22,6 @@ export default function KeywordsPage() {
   const [keyword, setKeyword] = useState('');
   const [slug, setSlug] = useState('');
   const [pages, setPages] = useState<ComparisonPage[]>([]);
-  const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -43,6 +42,7 @@ export default function KeywordsPage() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { fetchPages(); }, []);
 
   // Poll for AI_PROCESSING pages

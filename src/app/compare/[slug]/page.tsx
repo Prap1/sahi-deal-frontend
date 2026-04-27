@@ -236,7 +236,7 @@ const mockData: ComparisonData = {
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug: _slug } = await params;
+  await params;
   // In a real app, you would fetch SEO metadata for the slug
   return {
     title: mockData.seo.meta_title,
