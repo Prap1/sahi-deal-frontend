@@ -15,14 +15,18 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [authState, setAuthState] = useState<{ token: string | null; isLoading: boolean }>({
+    token: null,
+    isLoading: true,
+  });
   const router = useRouter();
 
   useEffect(() => {
     const stored = localStorage.getItem('sahideal_admin_token');
-    if (stored) setToken(stored);
-    setIsLoading(false);
+    setAuthState({
+      token: stored,
+      isLoading: false,
+    });
   }, []);
 
   const login = async (username: string, password: string) => {
@@ -36,7 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await res.json();
       localStorage.setItem('sahideal_admin_token', data.access);
       localStorage.setItem('sahideal_admin_refresh', data.refresh);
-      setToken(data.access);
+      setAuthState({ token: data.access, isLoading: false });
       return {};
     } catch {
       return { error: 'Network error. Please check if the backend is running.' };
@@ -46,12 +50,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     localStorage.removeItem('sahideal_admin_token');
     localStorage.removeItem('sahideal_admin_refresh');
-    setToken(null);
+    setAuthState({ token: null, isLoading: false });
     router.push('/admin/login');
   };
 
   return (
-    <AuthContext.Provider value={{ token, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ token: authState.token, isLoading: authState.isLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
