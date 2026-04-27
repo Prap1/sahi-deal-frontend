@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
+export const runtime = 'edge';
+
 // Define the interface based on the JSON structure
 interface Product {
   name: string;
