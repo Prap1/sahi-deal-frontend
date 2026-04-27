@@ -23,6 +23,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = localStorage.getItem('sahideal_admin_token');
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAuthState({
       token: stored,
       isLoading: false,
